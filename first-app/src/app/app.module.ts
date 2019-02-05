@@ -6,6 +6,7 @@ import { GreeterComponent } from './greeter/greeter.component';
 import { SalaryCalculatorComponent } from './salaryCalculator/salaryCalculator.component';
 import { SalaryCalculatorResultComponent } from './salaryCalculator/salaryCalculatorResult.component';
 
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SalaryCalculatorResultComponent } from './salaryCalculator/salaryCalcul
     , GreeterComponent
     , SalaryCalculatorComponent
     , SalaryCalculatorResultComponent
+    , ProductsComponent
   ],
   imports: [
     BrowserModule
@@ -21,8 +23,10 @@ import { SalaryCalculatorResultComponent } from './salaryCalculator/salaryCalcul
   providers: [],
   bootstrap: [
   	/*AppComponent
-  	, GreeterComponent*/
+  	, GreeterComponent
     SalaryCalculatorComponent
+    */
+    ProductsComponent
   ]
 })
 export class AppModule { }
