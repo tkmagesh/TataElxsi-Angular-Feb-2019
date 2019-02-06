@@ -14,6 +14,22 @@ ng new bug-tracker-app
 		(done) 6. Improve bug display
 		(done) 7. Sort the bugs
 		8. Persist the bugs in the localStorage
+		window.localStorage
+		===================
+			* key/value store
+			* both key and value must be strings
+			* key has to be unique
+			* use JSON.stringify & JSON.parse for serialization and deserialization
+			* Same Origin Policy
+			* ~10MB storage limit
+			* APIs
+			======
+				- setItem(key, value)
+				- getItem(key) => value
+				- removeItem(key)
+				- key(index) => key at index
+				- clear()
+				- length
 		9. Display 'createdAt' for each bug
 		10. Persist the bugs in the server
 		11. Make the bugs accessible using unique urls

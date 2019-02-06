@@ -25,10 +25,7 @@ export class BugTrackerComponent{
 	public sortBugDesc : boolean = false;
 	
 	constructor(private bugOperationsService : BugOperationsService){
-		this.bugs.push(this.bugOperationsService.createNew('Server communication failure'));
-		this.bugs.push(this.bugOperationsService.createNew('Application not responding'));
-		this.bugs.push(this.bugOperationsService.createNew('User access denied'));
-		this.bugs.push(this.bugOperationsService.createNew('Data integrity checks failed'));
+		
 	}
 
 	onBugCreated(newBug : Bug){
