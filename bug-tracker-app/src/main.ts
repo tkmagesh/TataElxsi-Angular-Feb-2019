@@ -4,6 +4,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import * as moment from 'moment';
+
+console.log(moment('2019-02-06T08:52:45.564Z').fromNow());
+
 if (environment.production) {
   enableProdMode();
 }
