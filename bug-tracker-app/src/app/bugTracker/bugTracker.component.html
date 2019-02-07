@@ -1,4 +1,4 @@
-<input type="button" value="Add New Bug" (click)="onAddNewBugClick()"/>
+<div>{{message}}</div>
 <app-bug-stats [data]="bugs"></app-bug-stats>
 <section class="sort">
 	<label for="">Order By :</label>
@@ -14,6 +14,7 @@
 <section class="list">
 	<ol>
 		<li *ngFor="let bug of ( bugs | sort:sortBugAttr:sortBugDesc ) ">
+			<div> Bug id = {{bug.id}} </div>
 			<span 
 				class="bugname" 
 				(click)="onBugNameClick(bug)"

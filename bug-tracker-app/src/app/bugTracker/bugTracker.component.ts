@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -14,29 +14,22 @@ export class BugTrackerComponent implements OnInit{
 
 	public sortBugAttr : string = '';
 	public sortBugDesc : boolean = false;
+
+	public message : string = '';
 	
-	constructor(private httpClient : HttpClient, private bugOperationsService : BugOperationsService){
+	constructor( private bugOperationsService : BugOperationsService){
 		
 	}
 
 	ngOnInit(){
 		//this.bugs = this.bugOperationsService.getAll();
-		this.httpClient
-			.get<Bug[]>('http://localhost:3000/bugs')
-			.subscribe(bugs => this.bugs = bugs);
-	}
+		this.bugOperationsService
+			.getAll()
+			.subscribe(bugs => {
+				this.bugs = bugs;
+				this.message = "The bugs are loaded";
+			});
 
-	onAddNewBugClick(){
-		let dummyBugData = {
-			id : 0,
-			name : 'A dummy bug',
-			isClosed : false,
-			createdAt : new Date(),
-			desc : 'asdflkj ladsfjld aslfjad;l jfl;dajslf;kad'
-		};
-		this.httpClient
-			.post<Bug>('http://localhost:3000/bugs', dummyBugData)
-			.subscribe(newBug => this.bugs = [...this.bugs, newBug]);
 	}
 	
 	onBugCreated(newBug : Bug){
@@ -44,8 +37,9 @@ export class BugTrackerComponent implements OnInit{
 	}
 	
 	onBugNameClick(bugToToggle : Bug){
-		let toggledBug = this.bugOperationsService.toggle(bugToToggle);
-		this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);
+		this.bugOperationsService
+			.toggle(bugToToggle)
+			.subscribe(toggledBug => this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug));
 	}
 
 	onRemoveClosedClick(){
@@ -53,8 +47,9 @@ export class BugTrackerComponent implements OnInit{
 			.bugs
 			.filter(bug => bug.isClosed)
 			.forEach(closedBug => {
-				this.bugOperationsService.remove(closedBug);
-				this.bugs = this.bugs.filter(bug => bug.id !== closedBug.id)
+				this.bugOperationsService
+					.remove(closedBug)
+					.subscribe(() => this.bugs = this.bugs.filter(bug => bug.id !== closedBug.id));				
 			});
 	}
 
