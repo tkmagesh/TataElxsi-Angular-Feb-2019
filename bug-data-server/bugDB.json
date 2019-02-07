@@ -6,6 +6,13 @@
       "isClosed": true,
       "createdAt": "2018-10-18T09:38:38.876Z",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
+    },
+    {
+      "id": 2,
+      "name": "A dummy bug",
+      "isClosed": false,
+      "createdAt": "2019-02-07T04:23:46.074Z",
+      "desc": "asdflkj ladsfjld aslfjad;l jfl;dajslf;kad"
     }
   ],
   "projects": [

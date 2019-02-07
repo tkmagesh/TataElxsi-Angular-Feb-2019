@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -14,12 +15,28 @@ export class BugTrackerComponent implements OnInit{
 	public sortBugAttr : string = '';
 	public sortBugDesc : boolean = false;
 	
-	constructor(private bugOperationsService : BugOperationsService){
+	constructor(private httpClient : HttpClient, private bugOperationsService : BugOperationsService){
 		
 	}
 
 	ngOnInit(){
-		this.bugs = this.bugOperationsService.getAll();
+		//this.bugs = this.bugOperationsService.getAll();
+		this.httpClient
+			.get<Bug[]>('http://localhost:3000/bugs')
+			.subscribe(bugs => this.bugs = bugs);
+	}
+
+	onAddNewBugClick(){
+		let dummyBugData = {
+			id : 0,
+			name : 'A dummy bug',
+			isClosed : false,
+			createdAt : new Date(),
+			desc : 'asdflkj ladsfjld aslfjad;l jfl;dajslf;kad'
+		};
+		this.httpClient
+			.post<Bug>('http://localhost:3000/bugs', dummyBugData)
+			.subscribe(newBug => this.bugs = [...this.bugs, newBug]);
 	}
 	
 	onBugCreated(newBug : Bug){
